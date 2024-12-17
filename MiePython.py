@@ -59,7 +59,7 @@ for r in rad_array:
         * math.exp(-0.5 * (((np.log(r / rm)) ** 2) / (np.log(sigma)) ** 2))
     )
     dnr_array.append(dnr)
-fig = plt.Figure(figsize=(5, 5))
+fig = plt.figure(figsize=(5, 5))
 plt.plot(rad_array, dnr_array)
 plt.xscale("log")
 plt.xlabel("radius (um)")
