@@ -1,9 +1,10 @@
-# radius!/usr/bin/env python
+#!/usr/bin/env python
 # coding: utf-8
 
 # Python Mie code
 
-# PyMieScatt is a python mie code based on based on Bohren and Huffman's Mie Theory derivations which calculates extinction efficiency (Qext), scattering efficiency (Qsca), backscattering efficiency (Qback) and asymmetry parameter (g). It requires the refractive index of the scattering particle and the size parameter.
+# PyMieScatt is a python mie code based on based on Bohren and Huffman's Mie Theory derivations which calculates extinction efficiency (Qext),
+# scattering efficiency (Qsca), backscattering efficiency (Qback) and asymmetry parameter (g). It requires the refractive index of the scattering particle and the size parameter.
 #
 # PyMieScatt is available at
 # https://github.com/bsumlin/PyMieScatt
@@ -19,7 +20,7 @@ import PyMieScatt as mie  # Importing miepython module for mie calculation
 from scipy.integrate import trapezoid as trapz  # Importing scipy module for integration
 
 matplotlib.use("Qt5Agg")
-import matplotlib.pyplot as plt  # Importing pyplot module for plotting
+import matplotlib.pyplot as plt
 
 # Single particle
 #
@@ -130,9 +131,9 @@ def miecoeff(n, sigma, rad_array, lamb, rm, m):
 bext_array, bsca_array, babs_array, g_array = miecoeff(
     n, sigma, rad_array, wavelength, rm, ref_index
 )
-
-bext = trapz(bext_array, rad_array)  # Integrating using trapezoidal
-bsca = trapz(bsca_array, rad_array)  # rule
+# Integrating vext,bsca,babs and g using trapezoidal rule
+bext = trapz(bext_array, rad_array)
+bsca = trapz(bsca_array, rad_array)
 babs = trapz(babs_array, rad_array)
 g = trapz(g_array, rad_array) / bsca
 
@@ -149,12 +150,12 @@ print(
 
 # Visualization of mie parameters
 #
-# Variation of mie efficiencies with size parameter x=2.pi.r/lambda
+# Variation of mie efficiencies with size parameter
 
 wavelength = 0.5
 ref_index = 1.45 + 0.05j
 rmin = 0.005
-rmax = 53
+rmax = 5
 rad_array = np.arange(rmin, rmax, 0.001)
 qext_array = []
 qsca_array = []
@@ -179,7 +180,7 @@ plt.grid()
 plt.legend()
 
 
-# Variation of SSA with refractive index qsca/qext
+# Variation of SSA with refractive index
 
 wavelength = 0.5
 ref_index = 1.33 + 0.0001j
@@ -201,7 +202,7 @@ for r in rad_array:
 ssa_array = np.divide(qsca_array, qext_array)
 
 fig = plt.Figure(figsize=(5, 5))
-# plt.plot(size_param_array, ssa_array, label=str(ref_index))
+plt.plot(size_param_array, ssa_array, label=str(ref_index))
 plt.plot(size_param_array, qext_array, label="Qext")
 plt.plot(size_param_array, qabs_array, label="Qabs")
 plt.plot(size_param_array, qsca_array, label="Qsca")
@@ -210,7 +211,7 @@ plt.ylabel("Qext/Qabs/Qsca")
 plt.grid()
 plt.legend()
 plt.show()
-# plt.savefig("mie_efficiencies.png")
+# plt.savefig("mie_efficiencies.png") to save
 
 ref_index = 1.33 + 0.01j
 qext_array = []
