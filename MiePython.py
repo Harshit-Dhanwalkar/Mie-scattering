@@ -1,23 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Python Mie code
+# Python Mie code
 
-# PyMieScatt is a python mie code based on based on Bohren and Huffman's Mie Theory derivations which calculates extinction efficiency (Qext),
-# scattering efficiency (Qsca), backscattering efficiency (Qback) and asymmetry parameter (g). It requires the refractive index of the scattering particle and the size parameter.
+# PyMieScatt is a python mie code based on based on Bohren and Huffman's Mie Theory derivations which calculates extinction efficiency (Qext), scattering efficiency (Qsca), backscattering efficiency (Qback) and asymmetry parameter (g). It requires the refractive index of the scattering particle and the size parameter.
 #
 # PyMieScatt is available at
 # https://github.com/bsumlin/PyMieScatt
 # and can be installed by running the following command in terminal.
 #
 # _pip install PyMieScatt_ or _conda install -c conda-forge pymiescatt_
-#
-# ### Requirements
-# - Python environment
-# - PyMieScatt
-# - NumPy
-# - SciPy
-# - matplotlib-pyplot
 
 import math
 
@@ -157,12 +149,12 @@ print(
 
 # Visualization of mie parameters
 #
-# Variation of mie efficiencies with size parameter
+# Variation of mie efficiencies with size parameter x=2.pi.r/lambda
 
 wavelength = 0.5
 ref_index = 1.45 + 0.05j
-rmin = 0.005  # Minimum radius
-rmax = 5  # Maximum radius
+rmin = 0.005
+rmax = 53
 rad_array = np.arange(rmin, rmax, 0.001)
 qext_array = []
 qsca_array = []
@@ -187,12 +179,12 @@ plt.grid()
 plt.legend()
 
 
-# Variation of SSA with refractive index
+# Variation of SSA with refractive index qsca/qext
 
 wavelength = 0.5
 ref_index = 1.33 + 0.0001j
-rmin = 0.005  # Minimum radius
-rmax = 10  # Maximum radius
+rmin = 0.005
+rmax = 10
 rad_array = np.arange(rmin, rmax, 0.001)
 qext_array = []
 qsca_array = []
@@ -218,7 +210,7 @@ plt.ylabel("Qext/Qabs/Qsca")
 plt.grid()
 plt.legend()
 plt.show()
-# plt.savefig("mie_efficiencies.png") to save
+# plt.savefig("mie_efficiencies.png")
 
 ref_index = 1.33 + 0.01j
 qext_array = []
